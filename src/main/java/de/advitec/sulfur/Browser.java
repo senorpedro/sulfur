@@ -3,6 +3,11 @@ package de.advitec.sulfur;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import java.sql.Timestamp;
+import java.lang.System;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +15,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 /**
  * Controls an actual browser. Elements are selected by locator expressions as described at
@@ -21,7 +28,7 @@ public class Browser {
 
   static WebDriver browser;
   private static final String INVALID_SELECTOR = "Invalid selector.";
-  private static final String SCREENSHOT_DIR = "/tmp;
+  private static final String SCREENSHOT_DIR = "/tmp";
 
   /**
    * Creates a new Browser instance using Firefox as default.
@@ -272,9 +279,10 @@ public class Browser {
   /**
    * makes a screenshot
    * @param prefix Prefix for the screenshot file. Timestamp will be appended.
+   * @throws IOException
    * Example: {@code | screenshot | ACCEPTANCE_TEST_NAME | }
    */
-  public static void screenshot(String prefix) {
+  public static void screenshot(String prefix) throws IOException {
       // from http://stackoverflow.com/a/3423347
       File scrFile = ((TakesScreenshot)browser).getScreenshotAs(OutputType.FILE);
       Timestamp tstamp = new Timestamp(System.currentTimeMillis());
