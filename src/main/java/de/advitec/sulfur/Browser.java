@@ -21,6 +21,7 @@ public class Browser {
 
   static WebDriver browser;
   private static final String INVALID_SELECTOR = "Invalid selector.";
+  private static final String SCREENSHOT_DIR = "/tmp;
 
   /**
    * Creates a new Browser instance using Firefox as default.
@@ -31,8 +32,8 @@ public class Browser {
 
   /**
    * Creates a new Browser instance using FireFox or Chrome.
-   * To be able to use chrome, you have to download the ChromeDriver for your operating system, and 
-   * set the environment variable 'webdriver.chrome.driver' pointing to your ChromeDriver 
+   * To be able to use chrome, you have to download the ChromeDriver for your operating system, and
+   * set the environment variable 'webdriver.chrome.driver' pointing to your ChromeDriver
    * executable.
    * @param browserName 'firefox' or 'chrome'. Upper or lower case doesn't matter.
    */
@@ -77,7 +78,7 @@ public class Browser {
   public static void typeIn(String value, String element) {
     find(element).sendKeys(value);
   }
-  
+
   /**
    * Selects a select box option by the visible text.
    * Example: {@code | select text | some value | in | id:someElement | }
@@ -101,7 +102,7 @@ public class Browser {
     Select selectBox = new Select(find(element));
     selectBox.selectByValue(value);
   }
- 
+
   /**
    * Selects a select box option by position.
    * Example: {@code | select position | 0 | in | id:someElement | }
@@ -126,7 +127,7 @@ public class Browser {
       Logger.getLogger(Browser.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-  
+
   // TODO method to open modal dialoag in Browser to be able to attach debugger
 
   /**
@@ -192,7 +193,7 @@ public class Browser {
   public static boolean elementIsVisible(String element) {
     return find(element).isDisplayed();
   }
-  
+
   /**
    * Checks whether the selected element is invisible.
    * Example: {@code | element | id:someElement | is invisible | }
@@ -206,7 +207,7 @@ public class Browser {
 
   /**
    * Checks whether the selected element has an attribute with the expected value.
-   * Example: 
+   * Example:
    * {@code | element | id:someElement | has attribute | someAttribute | with value | someValue | }
    * @param element Locator of the element to be used.
    * @param attribute Attribute to be checked.
@@ -256,7 +257,7 @@ public class Browser {
   public static boolean elementDoesNotExist(String element) {
     return !elementExists(element);
   }
-  
+
   /**
    * Checks whether the current url is the given url.
    * Example: {@code | url is | http://example.com | }
@@ -267,10 +268,23 @@ public class Browser {
     return browser.getCurrentUrl().equals(url);
   }
 
-  
 
   /**
-   * Finds the WebElement by the given selector. This method is used internally wherever an 
+   * makes a screenshot
+   * @param prefix Prefix for the screenshot file. Timestamp will be appended.
+   * Example: {@code | screenshot | ACCEPTANCE_TEST_NAME | }
+   */
+  public static void screenshot(String prefix) {
+      // from http://stackoverflow.com/a/3423347
+      File scrFile = ((TakesScreenshot)browser).getScreenshotAs(OutputType.FILE);
+      Timestamp tstamp = new Timestamp(System.currentTimeMillis());
+      String screenshotFileName = prefix + "-" + tstamp.getTime() + ".png";
+      FileUtils.copyFile(scrFile, new File(SCREENSHOT_DIR + "/" + screenshotFileName));
+  }
+
+
+  /**
+   * Finds the WebElement by the given selector. This method is used internally wherever an
    * 'element' parameter takes a selector expression. The selector type (eg. 'xpath') is separated
    * from its value by a colon.
    * @param selector one of the following selector types
@@ -323,14 +337,14 @@ public class Browser {
    *      <td>xpath</td>
    *      <td>expression to locate an xml element</td>
    *      <td>xpath://input[@alt='Search']</td>
-   *      <td>&lt;input type=&quot;image&quot; 
+   *      <td>&lt;input type=&quot;image&quot;
    *        src=&quot;some.gif&quot; alt=&quot;Search&quot; title=&quot;Search&quot;&gt;</td>
    *    </tr>
    *    <tr>
    *      <td>css</td>
    *      <td>CSS 3 selektor</td>
    *      <td>css:.category button</td>
-   *      <td>&lt;div class=&quot;category&quot;&gt;&lt;button 
+   *      <td>&lt;div class=&quot;category&quot;&gt;&lt;button
    *        class=&quot;confirmation&quot;&gt;OK&lt;/button&gt;&lt;/div&gt;</td>
    *    </tr>
    *  </tbody>
