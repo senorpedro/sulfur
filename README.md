@@ -185,6 +185,8 @@ You can control the browser with the following methods:
     | element         | id:someElement | has attribute | someAttribute | 
     | element         | id:someElement | exists |
     | element         | id:someElement | does not exist |
+    | screenshot      | prefix |
+    | wait            | someValue | seconds for element | id:someElement |
     | close           |
 
 ### Installing Additional Browser Drivers
