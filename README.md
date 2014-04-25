@@ -201,6 +201,12 @@ To be able to use other browsers than Firefox, you need to download the respecti
 
 More information about [web drivers](http://docs.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-s-drivers).
 
+
+### Helpful Selenium IDE Formatter
+
+The [separated values formatter](https://addons.mozilla.org/en-US/firefox/addon/separated-values-formatter/) is able to format a selenium test that was recorded with the selenium ide (firefox plugin) in a way that is almost sulfur like, so very helpful for writing tests
+
+
 Sulfur is brought to you by [ADVITEC Informatik GmbH](http://www.advitec.de/softwareentwicklung/start/)
 
 [contact form](http://www.advitec.de/cake/app/webroot/index.php) or [mail@advitec.de](mailto:mail@advitec.de)
