@@ -168,6 +168,7 @@ You can control the browser with the following methods:
 
     | browser | chrome |
     | get             | http://example.com |
+    | switch tab      | 1              |
     | click on        | id:someElement |
     | type            | some value | in | id:someElement |
     | select text     | some value | in | id:someElement |
@@ -188,6 +189,14 @@ You can control the browser with the following methods:
     | screenshot      | prefix |
     | wait            | someValue | seconds for element | id:someElement |
     | close           |
+
+### New features
+
+* Switch tab
+When you open something in new tab you can switch between tabs using:
+|switch tab| 1|
+|switch tab| 0|
+Tabs iteration starts from 0
 
 ### Installing Additional Browser Drivers
 
