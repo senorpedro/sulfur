@@ -1,5 +1,6 @@
 package de.advitec.sulfur;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,7 +66,16 @@ public class Browser {
     public static void get(String url) {
         browser.get(url.trim());
     }
-
+    
+    /**
+     * Switch tab on browser
+     * 
+     * @param t number of tab
+     */
+    public static void switchTab(int t) {
+  	  ArrayList<String> tabs = new ArrayList<String> (browser.getWindowHandles());
+  	  browser.switchTo().window(tabs.get(t));
+    }
 
     /**
      * Clicks on the selected element.
