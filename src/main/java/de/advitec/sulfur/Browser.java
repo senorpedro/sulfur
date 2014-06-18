@@ -76,6 +76,24 @@ public class Browser {
   	  ArrayList<String> tabs = new ArrayList<String> (browser.getWindowHandles());
   	  browser.switchTo().window(tabs.get(t));
     }
+    
+    /**
+     * Switch to iframe element
+     * 
+     * @param element iframe element
+     */
+    public static void switchToIframe(String element) {
+    	browser.switchTo().frame(find(element));
+    }
+    
+    /**
+     * Switch back from iframe element to content
+     * 
+     * @param element iframe element
+     */
+    public static void switchBackFromIframe() {
+    	browser.switchTo().defaultContent();
+    }
 
     /**
      * Clicks on the selected element.

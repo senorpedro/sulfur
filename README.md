@@ -193,10 +193,21 @@ You can control the browser with the following methods:
 ### New features
 
 * Switch tab
+
 When you open something in new tab you can switch between tabs using:
 |switch tab| 1|
 |switch tab| 0|
 Tabs iteration starts from 0
+
+* Switch to iframe
+
+If you need get element from iframe, then you must before change context to iframe.
+|switch to iframe|css:iframe.some-iframe|
+
+* Switch back from iframe
+
+If you need go back from iframe context.
+|switch back from iframe|
 
 ### Installing Additional Browser Drivers
 
