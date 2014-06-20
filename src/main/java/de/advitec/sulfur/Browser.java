@@ -18,6 +18,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.JavascriptExecutor;
 
 /**
  * Controls an actual browser. Elements are selected by locator expressions as described at
@@ -103,6 +104,16 @@ public class Browser {
      */
     public void clickOn(String element) {
         find(element).click();
+    }
+    
+    /**
+     * Move to element
+     * Example: {@code | move to | id:someElement |}
+     * @param element Locator of the element to by used 
+     */
+    public static void moveTo(String element) throws InterruptedException {
+    	String javaScript = "var evObj = document.createEvent('MouseEvents');" + "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" + "arguments[0].dispatchEvent(evObj);";
+    	((JavascriptExecutor) browser).executeScript(javaScript, find(element));
     }
 
     /**
