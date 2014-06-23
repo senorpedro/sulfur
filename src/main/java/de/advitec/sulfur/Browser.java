@@ -126,6 +126,28 @@ public class Browser {
     public static void typeIn(String value, String element) {
         find(element).sendKeys(value);
     }
+    
+    /**
+     * Select checkbox 
+     * Example: {@code |select box | id:someElement |}
+     * @param element Locator of the element to be used
+     */
+    public static void selectBox(String element) {
+    	if(!find(element).isSelected()) {
+    		find(element).click();
+    	}
+    }
+    
+    /**
+     * Remove select checkbox
+     * Example: {@code |remove select box | id:someElement |}
+     * @param element Locator of the element to be used
+     */
+    public static void removeSelectBox(String element) {
+    	if(find(element).isSelected()) {
+    		find(element).click();
+    	}
+    }
 
     /**
      * Selects a select box option by the visible text.
