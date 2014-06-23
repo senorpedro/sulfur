@@ -215,6 +215,8 @@ If you need go back from iframe context.
     
 * Select and unSelect checkbox
 
+Functions for checkbox 
+
     |select box       |css:.checkbox|
     |remove select box|css:.checkbox|
 
