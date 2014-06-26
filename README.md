@@ -201,6 +201,12 @@ When you open something in new tab you can switch between tabs using:
     
 Tabs iteration starts from 0
 
+* Close Tab and Switch
+
+Close selected tab and move to other.
+
+	|close tab| 1|switch tab|0|
+
 * Switch to iframe
 
 If you need get element from iframe, then you must before change context to iframe.

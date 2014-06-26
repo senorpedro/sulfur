@@ -78,6 +78,12 @@ public class Browser {
   	  browser.switchTo().window(tabs.get(t));
     }
     
+    public static void closeTabSwitchTab(int t, int nt) {
+    	ArrayList<String> tabs = new ArrayList<String> (browser.getWindowHandles());
+    	browser.switchTo().window(tabs.get(t)).close();
+    	browser.switchTo().window(tabs.get(nt));
+    }
+    
     /**
      * Switch to iframe element
      * 
